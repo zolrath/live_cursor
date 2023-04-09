@@ -37,10 +37,13 @@ defmodule LiveCursorWeb.CursorsLive do
         <ul class="list-none" id="cursors" phx-hook="TrackClientCursor">
           <%= for user <- @users do %>
             <% color = LiveCursor.Color.getHSL(user.name) %>
+            <% is_local_user = user.socket_id == @socket.id %>
+            <% x = if is_local_user, do: "var(--x)", else: "#{user.x}%" %>
+            <% y = if is_local_user, do: "var(--y)", else: "#{user.y}%" %>
+            <% transition = if is_local_user, do: "none", else: "all" %>
             <li
               style={"color: #{color}; left: #{x}; top: #{y}"}
-              style={"color: #{color}; left: #{user.x}%; top: #{user.y}%"}
-              class={"flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden"}
+              class={"flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden transition-#{transition}"}
             >
               <svg
                 width="21px"
