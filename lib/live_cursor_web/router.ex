@@ -17,7 +17,9 @@ defmodule LiveCursorWeb.Router do
   scope "/", LiveCursorWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live_session :name, on_mount: LiveCursorWeb.AssignName do
+      live "/", HomeLive
+    end
   end
 
   # Other scopes may use custom stacks.
