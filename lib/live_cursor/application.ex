@@ -14,6 +14,7 @@ defmodule LiveCursor.Application do
       {Phoenix.PubSub, name: LiveCursor.PubSub},
       # Start Finch
       {Finch, name: LiveCursor.Finch},
+      LiveCursorWeb.Presence,
       # Start the Endpoint (http/https)
       LiveCursorWeb.Endpoint
       # Start a worker by calling: LiveCursor.Worker.start_link(arg)
